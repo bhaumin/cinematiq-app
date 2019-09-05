@@ -40,7 +40,7 @@ class App extends React.Component {
           <div className="row">
             <div className="offset-1 col-12">
               {movieSearchResult && movieSearchResult.hasOwnProperty("results") &&
-                <MovieList resultResult={movieSearchResult} />
+                <MovieList searchResult={movieSearchResult} />
               }
             </div>
           </div>

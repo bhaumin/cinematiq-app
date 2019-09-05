@@ -19,7 +19,7 @@ class MovieList extends React.Component {
   // TODO: Pagination
   render() {
     const { selectedMovieId } = this.state;
-    const { results } = this.props.resultResult;
+    const { results } = this.props.searchResult;
 
     const movieDetailsById = results.reduce(
       (obj, movie) => {

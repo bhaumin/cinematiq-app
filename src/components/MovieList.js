@@ -19,7 +19,7 @@ class MovieList extends React.Component {
   // TODO: Pagination
   render() {
     const { selectedMovieId } = this.state;
-    const { results } = this.props.searchResult;
+    const { searchResult: {results}, maxRows, itemsPerRow } = this.props;
 
     const movieDetailsById = results.reduce(
       (obj, movie) => {
@@ -27,12 +27,14 @@ class MovieList extends React.Component {
         return obj;
       }, {});
 
+    let rowCounter = 0;
+
     return (
       <div className="container-fluid movie-list">
 
-        {[0,1,2,3].map(row => (
+        {new Array(maxRows).fill(null).map(row => rowCounter++).map(row => (
           <div className="row result-row" key={row}>
-            {results.slice(row*5, (row*5)+5).map(movie => (
+            {results.slice(row*itemsPerRow, (row*itemsPerRow)+itemsPerRow).map(movie => (
               <div className="col-2 result-item" key={movie.id}>
                 <MovieListItem
                   key={movie.id}

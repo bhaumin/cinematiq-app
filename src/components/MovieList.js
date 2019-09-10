@@ -9,16 +9,21 @@ class MovieList extends React.Component {
 
     this.state = {
       selectedMovieId: null,
+      showModal: false,
     };
   }
 
   movieSelectionHandler = (movieId) => {
-    this.setState({selectedMovieId: movieId});
+    this.setState({selectedMovieId: movieId, showModal: true});
   };
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+  }
 
   // TODO: Pagination
   render() {
-    const { selectedMovieId } = this.state;
+    const { selectedMovieId, showModal } = this.state;
     const { searchResult: {results}, maxRows, itemsPerRow } = this.props;
 
     const movieDetailsById = results.reduce(
@@ -49,7 +54,10 @@ class MovieList extends React.Component {
         ))}
 
         {selectedMovieId && movieDetailsById.hasOwnProperty(selectedMovieId) &&
-          <MovieDetailsModal movie={movieDetailsById[selectedMovieId]} />
+          <MovieDetailsModal
+            movie={movieDetailsById[selectedMovieId]}
+            show={showModal}
+            onHide={this.closeModal} />
         }
       </div>
     );

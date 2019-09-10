@@ -30,7 +30,7 @@ function MovieDetailsModal(props) {
               <small>Released {releaseDate}</small>
               <br /><br />
               <p>{movie.overview}</p>
-              <small><strong>Popularity: {movie.popularity.toFixed(0)}%</strong></small>
+              <small><strong>Popularity: {Math.round(movie.popularity)}%</strong></small>
             </div>
           </div>
         </div>
